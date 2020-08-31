@@ -1,0 +1,8 @@
+############# EngagED Plugin
+{{ ENGAGED_AUTH_APP_DOCKER_SERVICE_NAME }}:
+  image: {{ ENGAGED_AUTH_APP_DOCKER_IMAGE }}
+  volumes:
+    - ../plugins/engaged/apps/auth/settings/env.txt:/usr/app/.env:ro
+  restart: unless-stopped
+  depends_on:
+    - mysql

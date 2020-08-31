@@ -1,0 +1,13 @@
+DCS_SESSION_COOKIE_SAMESITE = 'Lax'
+REGISTRATION_EXTRA_FIELDS = {
+    'confirm_email': 'hidden',
+    'level_of_education': 'hidden',
+    'gender': 'hidden',
+    'year_of_birth': 'hidden',
+    'mailing_address': 'hidden',
+    'goals': 'hidden',
+    'honor_code': 'hidden',
+    'terms_of_service': 'hidden',
+    'city': 'hidden',
+    'country': 'hidden',
+}

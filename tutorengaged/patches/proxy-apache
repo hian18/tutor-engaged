@@ -1,0 +1,27 @@
+{% if ACTIVATE_HTTPS %}
+<VirtualHost *:80>
+   ServerName {{ ENGAGED_AUTH_APP_HOST }}
+   Redirect / https://{{ ENGAGED_AUTH_APP_HOST }}/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName {{ ENGAGED_AUTH_APP_HOST }}
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/{{ ENGAGED_AUTH_APP_HOST }}/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/{{ ENGAGED_AUTH_APP_HOST }}/privkey.pem
+
+    ProxyPreserveHost On
+    ProxyRequests On
+    ProxyPass / http://localhost:{{ NGINX_HTTP_PORT }}/
+    ProxyPassReverse / http://localhost:{{ NGINX_HTTP_PORT }}/
+</VirtualHost>
+{% else %}
+<VirtualHost *:80>
+    ServerName {{ ENGAGED_AUTH_APP_HOST }}
+
+    ProxyPreserveHost On
+    ProxyRequests On
+    ProxyPass / http://localhost:{{ NGINX_HTTP_PORT }}/
+    ProxyPassReverse / http://localhost:{{ NGINX_HTTP_PORT }}/
+</VirtualHost>
+{% endif %}
