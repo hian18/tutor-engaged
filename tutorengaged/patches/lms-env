@@ -1,0 +1,5 @@
+"MKTG_URLS": {
+    "ROOT": "/dashboard"
+},
+"TIME_ZONE": "{{ ENGAGED_DEFAULT_TIMEZONE }}",
+"DEFAULT_SITE_THEME": "{{ ENGAGED_DEFAULT_THEME }}"

@@ -1,0 +1,2 @@
+recursive-include tutorengaged/patches *
+recursive-include tutorengaged/templates *
