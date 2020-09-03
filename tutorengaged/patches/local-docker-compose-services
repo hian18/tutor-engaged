@@ -1,8 +1,36 @@
 ############# EngagED Plugin
+{{ ENGAGED_LOGSTASH_SERVICE_NAME }}:
+  image: {{ ENGAGED_LOGSTASH_DOCKER_IMAGE }}
+  restart: unless-stopped
+  volumes:
+    - ../plugins/engaged/apps/logstash/config/:/usr/share/logstash/config/:ro
+    - ../plugins/engaged/apps/logstash/pipeline/:/usr/share/logstash/pipeline/:ro
+  ports:
+      - {{ ENGAGED_AUTH_APP_LOGSTASH_PORT }}:{{ ENGAGED_AUTH_APP_LOGSTASH_PORT }}
+      - {{ ENGAGED_MYSQL_SOURCE_CONNECTOR_LOGSTASH_PORT }}:{{ ENGAGED_MYSQL_SOURCE_CONNECTOR_LOGSTASH_PORT }}
+
 {{ ENGAGED_AUTH_APP_DOCKER_SERVICE_NAME }}:
   image: {{ ENGAGED_AUTH_APP_DOCKER_IMAGE }}
   volumes:
     - ../plugins/engaged/apps/auth/settings/env.txt:/usr/app/.env:ro
   restart: unless-stopped
+  logging:
+      driver: syslog
+      options:
+        syslog-address: 'tcp://localhost:{{ ENGAGED_AUTH_APP_LOGSTASH_PORT }}'
   depends_on:
     - mysql
+    - {{ ENGAGED_LOGSTASH_SERVICE_NAME }}
+
+{{ ENGAGED_MYSQL_SOURCE_CONNECTOR_DOCKER_SERVICE_NAME }}:
+  image: {{ ENGAGED_MYSQL_SOURCE_CONNECTOR_DOCKER_IMAGE }}
+  volumes:
+    - ../plugins/engaged/apps/mysql-source-connector/settings/env.txt:/usr/app/.env:ro
+  restart: unless-stopped
+  logging:
+      driver: syslog
+      options:
+        syslog-address: 'tcp://localhost:{{ ENGAGED_MYSQL_SOURCE_CONNECTOR_LOGSTASH_PORT }}'
+  depends_on:
+    - mysql
+    - {{ ENGAGED_LOGSTASH_SERVICE_NAME }}
