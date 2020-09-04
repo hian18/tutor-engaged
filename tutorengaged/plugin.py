@@ -1,5 +1,6 @@
 from glob import glob
 import os
+# import click
 
 from .__about__ import __version__
 
@@ -86,3 +87,7 @@ def patches():
             content = patch_file.read()
             all_patches[name] = content
     return all_patches
+
+# @click.group(help="Interact with EngagED")
+# def command():
+#     pass
