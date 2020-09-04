@@ -9,6 +9,7 @@ templates = os.path.join(HERE, "templates")
 
 AUTH_APP_VERSION = "1.0.2"
 LOGSTASH_VERSION = "7.8.0"
+OPEN_EDX_MYSQL_VERSION = "1.0.0"
 MYSQL_SOURCE_CONNECTOR_VERSION = "1.0.2"
 
 config = {
@@ -62,6 +63,9 @@ config = {
         "AUTH_APP_DOCKER_SERVICE_NAME": "engaged-auth",
         "AUTH_APP_LOGSTASH_PORT": 5000,
         "AUTH_APP_LOGSTASH_INDEX_NAME": "open-edx-engaged-auth-integration-api-{{ ENGAGED_SERVER_IDENTIFIER }}",
+    },
+    "set": {
+        "DOCKER_IMAGE_MYSQL": "docker.io/engagedu/open-edx-mysql:" + OPEN_EDX_MYSQL_VERSION
     }
 }
 
