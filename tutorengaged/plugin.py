@@ -9,7 +9,7 @@ templates = os.path.join(HERE, "templates")
 
 AUTH_APP_VERSION = "1.0.2"
 LOGSTASH_VERSION = "7.8.0"
-MYSQL_SOURCE_CONNECTOR_VERSION = "1.0.0"
+MYSQL_SOURCE_CONNECTOR_VERSION = "1.0.1"
 
 config = {
     "add": {
