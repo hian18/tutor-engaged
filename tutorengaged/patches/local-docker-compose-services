@@ -26,6 +26,7 @@
   image: {{ ENGAGED_MYSQL_SOURCE_CONNECTOR_DOCKER_IMAGE }}
   volumes:
     - ../plugins/engaged/apps/mysql-source-connector/settings/env.txt:/usr/app/.env:ro
+    - ../../data/engaged/mysql-source-connector/lowdb/:/var/lib/app-data/lowdb/
   restart: unless-stopped
   logging:
       driver: syslog
