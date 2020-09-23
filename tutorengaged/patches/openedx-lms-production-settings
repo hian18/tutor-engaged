@@ -11,3 +11,5 @@ REGISTRATION_EXTRA_FIELDS = {
     'city': 'hidden',
     'country': 'hidden',
 }
+
+ALLOWED_HOSTS.append(".{{ LMS_HOST }}")
