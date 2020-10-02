@@ -39,7 +39,7 @@ server {
 
 server {
   listen 80;
-  server_name *.local.overhang.io;  
+  server_name *.{{ LMS_HOST }};  
 
   access_log /var/log/nginx/access.log tutor;
   client_max_body_size 4M;
