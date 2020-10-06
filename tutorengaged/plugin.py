@@ -15,7 +15,9 @@ config = {
         "APM_SECRET_TOKEN": "!! PUT THE APM SECRET TOKEN HERE !!",
         "SERVER_IDENTIFIER": "!! PUT THE SERVER IDENTIFIER HERE !!",
 
-        "AUTH_APP_API_SECRET_KEY": "{{ 20|random_string }}"
+        "AUTH_APP_API_SECRET_KEY": "{{ 20|random_string }}",
+
+        "CORE_API_SECRET_KEY": "!! PUT THE ENGAGED CORE API SECRET KEY HERE !!"
     },
     "defaults": {
         "VERSION": __version__,
@@ -34,6 +36,11 @@ config = {
         "AUTH_APP_HOST": "engaged-auth.{{ LMS_HOST }}",
         "AUTH_APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY}}engagedu/open-edx-engaged-auth-integration:{{ ENGAGED_AUTH_APP_VERSION }}",
         "AUTH_APP_DOCKER_SERVICE_NAME": "engaged-auth",
+
+        "CMS_FEATURE_ENABLE_CONTENT_LIBRARIES": "true",
+        "CMS_FEATURE_DISABLE_COURSE_CREATION": "false",
+
+        "CORE_API_EMIT_CERTIFICATE_URL": "https://core.engaged.com.br/internal/ead/certificate/emit"
     }
 }
 
